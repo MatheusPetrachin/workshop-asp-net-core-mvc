@@ -9,11 +9,11 @@ namespace SalesWebMVC.Controllers
 {
     public class SalesRecordsController : Controller
     {
-        private readonly SalesRecordService _salesRecordsService;
+        private readonly SalesRecordService _salesRecordService;
 
-        public SalesRecordsController(SalesRecordService salesRecordsService)
+        public SalesRecordsController(SalesRecordService salesRecordService)
         {
-            _salesRecordsService = salesRecordsService;
+            _salesRecordService = salesRecordService;
         }
 
         public IActionResult Index()
@@ -33,13 +33,9 @@ namespace SalesWebMVC.Controllers
             }
             ViewData["minDate"] = minDate.Value.ToString("yyyy-MM-dd");
             ViewData["maxDate"] = maxDate.Value.ToString("yyyy-MM-dd");
-            var result = await _salesRecordsService.FindByDateAsync(minDate, maxDate);
+            var result = await _salesRecordService.FindByDateAsync(minDate, maxDate);
             return View(result);
         }
-
-          public IActionResult GroupingSearch()
-        {
-            return View();
-        }
+        
     }
 }
